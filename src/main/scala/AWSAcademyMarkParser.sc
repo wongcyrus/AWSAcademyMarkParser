@@ -17,6 +17,7 @@ def printToFile(f: java.io.File)(op: java.io.PrintWriter => Unit) {
 }
 
 val content = (1 to pdfReader.getNumberOfPages).map(i => PdfTextExtractor.getTextFromPage(pdfReader, i)).fold("")(_ + _)
+pdfReader.close
 
 printToFile(new File(basePath + filename + "raw.txt")) { p =>
   p.write(content)

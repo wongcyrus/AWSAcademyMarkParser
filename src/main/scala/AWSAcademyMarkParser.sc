@@ -29,7 +29,7 @@ def toInt(s: String): Option[Int] = {
   try {
     Some(s.toInt)
   } catch {
-    case e: Exception => None
+    case _: Exception => None
   }
 }
 
@@ -45,6 +45,7 @@ def extractLabName(s: String) = {
 
 def extractMark(s: String) = {
   val lines = s.split("\n")
+
   def captureMark(s: String): Option[Int] = {
     val segments = s.split(" ")
     val mark = toInt(segments(segments.length - 1))
@@ -63,9 +64,9 @@ def extractMark(s: String) = {
     None
 }
 
-val r = """(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b""".r
+val emailRegex = """(?i)\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b""".r
 val rawMarks = segments.map(s => {
-  (r.findFirstMatchIn(s),  extractLabName(s), extractMark(s))
+  (emailRegex.findFirstMatchIn(s), extractLabName(s), extractMark(s))
 }
 ).filter(r => !r._1.isEmpty) //filter first row
 

@@ -1,2 +1,3 @@
-# PDF Mark Parser
-Parser to convert Lab Mark from PDF to CSV. If students attempted the lab for several time, it will count for the highest mark.
+# AWS Academy Mark Parser
+The current version of qwiklab use DIV to create table and teachers cannot copy the table from excel for mark calculation.
+This project extracts the mark from HTML to CSV.
